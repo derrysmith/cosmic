@@ -23,7 +23,3 @@ jobs:
       - run:
           name: publish
           command: dotnet publish ./source/cosmic.sln --no-build --no-restore -o ./pub
-      
-      - run:
-          name: results
-          command: ls -lR

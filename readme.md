@@ -21,13 +21,11 @@ Social-Media driven Contact Management System.
 
 ## credits
 
-
-
-
 ```
 +-- github.com/derrysmith/cosmic
 	+-- branches
 		|-- master
+			|-- beginning
 			|-- issues/001
 			|-- issues/002
 			|-- issues/003
