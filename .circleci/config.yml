@@ -26,4 +26,4 @@ jobs:
       
       - run:
           name: results
-          command: ls -alR
+          command: ls -lR

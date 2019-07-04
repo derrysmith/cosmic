@@ -1,7 +1,8 @@
 # cosmic
 
-[![shields-twitter](https://img.shields.io/twitter/follow/derryroshad.svg?style=flat-square)][1]
+<!-- [![shields-twitter](https://img.shields.io/twitter/follow/derryroshad.svg?style=flat-square)][1] -->
 [![shields-circle](https://img.shields.io/circleci/build/github/derrysmith/cosmic/master.svg?style=flat-square)][6]
+[![shields-myget](https://img.shields.io/myget/derrysmith/dt/George.Framework.GraphQL.svg?style=flat-square)][7]
 [![shields-license](https://img.shields.io/github/license/derrysmith/cosmic.svg?style=flat-square)][2]
 [![shields-issues](https://img.shields.io/github/issues-raw/derrysmith/cosmic.svg?style=flat-square)][5]
 [![shields-beerpay](https://img.shields.io/beerpay/derrysmith/cosmic.svg?style=flat-square)][3]
@@ -135,3 +136,4 @@ Social-Media driven Contact Management System.
 [4]: https://open.spotify.com/track/6lc5JOnCJsD0YhYxms7DNw?si=X9_0wY5bTkq44ZxkQ30bhg
 [5]: https://github.com/derrysmith/cosmic
 [6]: https://circleci.com/gh/derrysmith/cosmic
+[7]: https://www.myget.org/F/derrysmith/api/v3/index.json
