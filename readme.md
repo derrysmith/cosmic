@@ -8,6 +8,20 @@
 
 Social-Media driven Contact Management System.
 
+## inspiration
+
+> Funkadelic. "Cosmic Slop." _Cosmic Slop_, Westbound Records, 1973.<br />_Spotify_, [open.spotify.com/track/6lc5JOnCJsD0YhYxms7DNw][4]
+
+## getting started
+
+## usage
+
+## contributing
+
+## credits
+
+
+
 
 ```
 +-- github.com/derrysmith/cosmic
@@ -102,11 +116,11 @@ Social-Media driven Contact Management System.
 	},
 
 	"contacts": {
-		"address-type:home": {
-
-		},
-
-		"contactType
+		"address-type:home": { "displayName": "Home", "description": "" },
+		"address-type:work": { "displayName": "Work", "description": "" },
+		"phone-type:home": null,
+		"phone-type:work": null,
+		"phone-type:cell": null
 	},
 
 	"settings": {
@@ -114,18 +128,6 @@ Social-Media driven Contact Management System.
 	}
 }
 ```
-
-## inspiration
-
-> Funkadelic. "Cosmic Slop." _Cosmic Slop_, Westbound Records, 1973.<br />_Spotify_, [open.spotify.com/track/6lc5JOnCJsD0YhYxms7DNw][4]
-
-## getting started
-
-## usage
-
-## contributing
-
-## credits
 
 [1]: https://twitter.com/derryroshad
 [2]: https://github.com/derrysmith/cosmic/blob/master/license.md
