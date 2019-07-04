@@ -1,16 +1,24 @@
 version: 2
+
 jobs:
   build:
-    docker:
-      - image: debian:stretch
+    machine: true
 
     steps:
       - checkout
 
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: restore
+          command: echo "dotnet restore"
 
       - run:
-          name: Print the Current Time
-          command: date
+          name: compile
+          command: echo "dotnet build"
+
+      - run:
+          name: testing
+          command: echo "dotnet test"
+
+      - run:
+          name: testing
+          command: echo "dotnet publish"
