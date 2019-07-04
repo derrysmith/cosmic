@@ -128,8 +128,8 @@ Social-Media driven Contact Management System.
 ## credits
 
 [1]: https://twitter.com/derryroshad
-[2]: https://github.com/derrysmith/cosmic
+[2]: https://github.com/derrysmith/cosmic/blob/master/license.md
 [3]: https://github.com/derrysmith/cosmic
 [4]: https://open.spotify.com/track/6lc5JOnCJsD0YhYxms7DNw?si=X9_0wY5bTkq44ZxkQ30bhg
 [5]: https://github.com/derrysmith/cosmic
-[6]: https://github.com/derrysmith/cosmic
+[6]: https://circleci.com/gh/derrysmith/cosmic

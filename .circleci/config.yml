@@ -10,16 +10,20 @@ jobs:
 
       - run:
           name: restore
-          command: dotnet restore
+          command: dotnet restore ./source/cosmic.sln
 
       - run:
           name: compile
-          command: dotnet build
+          command: dotnet build ./source/cosmic.sln --no-restore
 
       - run:
           name: testing
-          command: echo "dotnet test"
+          command: dotnet test ./source/test/**/*.csproj --no-build --no-restore
 
       - run:
-          name: testing
-          command: echo "dotnet publish"
+          name: publish
+          command: dotnet publish ./source/cosmic.sln --no-build --no-restore -o ./pub
+      
+      - run:
+          name: results
+          command: ls -alR
