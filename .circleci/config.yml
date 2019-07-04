@@ -2,18 +2,19 @@ version: 2
 
 jobs:
   build:
-    machine: true
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
 
     steps:
       - checkout
 
       - run:
           name: restore
-          command: echo "dotnet restore"
+          command: dotnet restore
 
       - run:
           name: compile
-          command: echo "dotnet build"
+          command: dotnet build
 
       - run:
           name: testing

@@ -8,6 +8,17 @@
 
 Social-Media driven Contact Management System.
 
+
+```
++-- github.com/derrysmith/cosmic
+	+-- branches
+		|-- master
+			|-- issues/001
+			|-- issues/002
+			|-- issues/003
+			|-- hotfix/004
+```
+
 ```
 +-- cosmic
 	+-- source
