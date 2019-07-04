@@ -23,32 +23,5 @@ namespace Cosmic.Shared.Contacts.Messages
 	using System.Collections.Generic;
 	using System.Collections.Specialized;
 
-	public class GetContactRequest : RequestBase
-	{
-		public string ContactID { get; set; }
-	}
-
-	public class GetContactResponse : ResponseBase
-	{
-		public IContact Contact { get; set; }
-	}
-
-	public class GetContactsByFilterRequest : RequestBase
-	{
-	}
-
-	public class GetContactsByFilterResponse : ResponseBase
-	{
-		public IEnumerable<IContact> Contacts { get; set; }
-	}
-
-	public class GetContactsBySearchRequest : RequestBase
-	{
-		public string SearchText { get; set; }
-	}
-
-	public class GetContactsBySearchResponse : ResponseBase
-	{
-		public IEnumerable<IContact> Contacts { get; set; }
-	}
+	
 }
