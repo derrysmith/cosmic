@@ -1,36 +1,57 @@
 version: "3.4"
 
-x-cosmic-mobile:
-  &cosmic-mobile-defaults
-  build:
-    context: ./cosmic-mobile
-  image: derrysmith/cosmic-mobile:${MOBILE_TAG:-dev}
+# x-cosmic-mobile:
+#   &cosmic-mobile-defaults
+#   build:
+#     context: ./cosmic-mobile
+#   image: derrysmith/cosmic-mobile:${MOBILE_TAG:-dev}
 
-x-cosmic-portal:
-  &cosmic-portal-defaults
-  build:
-    context: ./cosmic-portal
-  image: derrysmith/cosmic-portal:${PORTAL_TAG:-dev}
-  ports:
-    - "30010:80"
+# x-cosmic-portal:
+#   &cosmic-portal-defaults
+#   build:
+#     context: ./cosmic-portal
+#   image: derrysmith/cosmic-portal:${PORTAL_TAG:-dev}
+#   ports:
+#     - "30010:8080"
 
-x-cosmic-webapp:
-  &cosmic-webapp-defaults
-  build:
-    context: ./cosmic-webapp
-  image: derrysmith/cosmic-webapp:${WEBAPP_TAG:-dev}
-  ports:
-    - "30020:80"
+# x-cosmic-webapp:
+#   &cosmic-webapp-defaults
+#   build:
+#     context: ./cosmic-webapp
+#   image: derrysmith/cosmic-webapp:${WEBAPP_TAG:-dev}
+#   ports:
+#     - "30020:8080"
     
 services:
+  cosmic-mobile:
+    build:
+      context: ./cosmic-mobile
+      dockerfile: Dockerfile
+    image: derrysmith/cosmic-mobile:${COSMIC_MOBILE_TAG:-dev}
+    ports:
+      - "30010:80"
   cosmic-portal:
-    *cosmic-portal-defaults
-  cosmic-portal-gcr:
-    <<: *cosmic-portal-defaults
-    image: gcr.io/dsmith-cosmic-dev/cosmic-portal:${WEBAPP_TAG:-dev}
-  
+    build:
+      context: ./cosmic-portal
+      dockerfile: Dockerfile
+    image: derrysmith/cosmic-portal:${COSMIC_PORTAL_TAG:-dev}
+    ports:
+      - "30020:80"
   cosmic-webapp:
-    *cosmic-webapp-defaults
-  cosmic-webapp-gcr:
-    <<: *cosmic-webapp-defaults
-    image: gcr.io/dsmith-cosmic-dev/cosmic-webapp:${WEBAPP_TAG:-dev}
+    build:
+      context: ./cosmic-webapp
+      dockerfile: Dockerfile
+    image: derrysmith/cosmic-webapp:${COSMIC_WEBAPP_TAG:-dev}
+    ports:
+      - "30030:80"
+  # cosmic-portal:
+  #   *cosmic-portal-defaults
+  # cosmic-portal-gcr:
+  #   <<: *cosmic-portal-defaults
+  #   image: gcr.io/dsmith-cosmic-dev/cosmic-portal:${PORTAL_TAG:-dev}
+  
+  # cosmic-webapp:
+  #   *cosmic-webapp-defaults
+  # cosmic-webapp-gcr:
+  #   <<: *cosmic-webapp-defaults
+  #   image: gcr.io/dsmith-cosmic-dev/cosmic-webapp:${WEBAPP_TAG:-dev}

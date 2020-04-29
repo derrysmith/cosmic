@@ -1,5 +1,4 @@
-# runtime image
 FROM nginx:latest
 
-## install
-COPY ./build ./usr/share/nginx/html
+# compile
+COPY ./src/index.html ./usr/share/nginx/html
