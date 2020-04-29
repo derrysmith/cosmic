@@ -2,10 +2,10 @@
 name: build and deploy cosmic mobile app
 
 # workflow events
-on:
-  push:
-    paths:
-    - "cosmic-mobile/**"
+on: [ push ]
+  # push:
+  #   paths:
+  #   - "cosmic-mobile/**"
 
 # workflow jobs
 jobs:
