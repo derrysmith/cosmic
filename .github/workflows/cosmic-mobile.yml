@@ -28,12 +28,7 @@ jobs:
 
       - name: build dockerfile
         run: docker-compose build cosmic-mobile
-
-  publish:
-    name: deploy cosmic mobile app (github)
-    needs: compile
-    runs-on: ubuntu-latest
-    steps:
+        
       - name: docker login
         run: echo ${GITHUB_TOKEN} | docker login ${DOCKER_URL} -u ${GITHUB_ACTOR} --password-stdin
 
