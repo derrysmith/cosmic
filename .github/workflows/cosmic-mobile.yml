@@ -15,16 +15,16 @@ jobs:
     env:
       COSMIC_MOBILE_TAG: ci
     steps:
-    - name: checkout source code
-      uses: actions/checkout@v2
+      - name: checkout source code
+        uses: actions/checkout@v2
 
-    - name: build dockerfile
-      run: docker-compose build cosmic-mobile
-      
+      - name: build dockerfile
+        run: docker-compose build cosmic-mobile
+
   publish:
     name: deploy cosmic mobile app (github)
     needs: compile
     runs-on: ubuntu-latest
     steps:
-    - name: docker push to github packages
-      run: echo "pushing to github"
+      - name: docker push to github packages
+        run: echo "pushing to github"
