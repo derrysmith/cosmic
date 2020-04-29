@@ -2,10 +2,18 @@
 name: build and deploy cosmic mobile app
 
 # workflow events
-on: [ push ]
-  # push:
-  #   paths:
-  #   - "cosmic-mobile/**"
+on:
+  push:
+    paths:
+    - "cosmic-mobile/**"
+    - ".github/workflows/cosmic-mobile.yml"
+
+# workflow env vars
+env:
+  DOCKER_URL: docker.pkg.github.com
+  DOCKER_PATH: ${{ github.repository }}
+  DOCKER_IMAGE: cosmic-mobile
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 # workflow jobs
 jobs:
@@ -26,5 +34,8 @@ jobs:
     needs: compile
     runs-on: ubuntu-latest
     steps:
+      - name: docker login
+        run: echo ${GITHUB_TOKEN} | docker login ${DOCKER_URL} -u ${GITHUB_ACTOR} --password-stdin
+
       - name: docker push to github packages
-        run: echo "pushing to github"
+        run: docker push ${DOCKER_URL}/${DOCKER_PATH}/${DOCKER_IMAGE}:${COSMIC_MOBILE_TAG}
