@@ -27,7 +27,7 @@ services:
     build:
       context: ./cosmic-mobile
       dockerfile: Dockerfile
-    image: derrysmith/cosmic-mobile:${COSMIC_MOBILE_TAG:-dev}
+    image: ${COSMIC_MOBILE_IMAGE:-derrysmith/cosmic-mobile:dev}
     ports:
       - "30010:80"
   cosmic-portal:

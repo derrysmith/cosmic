@@ -13,15 +13,15 @@ env:
   DOCKER_URL: docker.pkg.github.com
   DOCKER_PATH: ${{ github.repository }}
   DOCKER_IMAGE: cosmic-mobile
+  COSMIC_MOBILE_TAG: ci
+  COSMIC_MOBILE_IMAGE: ${DOCKER_URL}/${DOCKER_PATH}/${DOCKER_IMAGE}:${COSMIC_MOBILE_TAG}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+  
 # workflow jobs
 jobs:
   compile:
     name: build cosmic mobile app (android and ios)
     runs-on: ubuntu-latest
-    env:
-      COSMIC_MOBILE_TAG: ci
     steps:
       - name: checkout source code
         uses: actions/checkout@v2
@@ -38,4 +38,4 @@ jobs:
         run: echo ${GITHUB_TOKEN} | docker login ${DOCKER_URL} -u ${GITHUB_ACTOR} --password-stdin
 
       - name: docker push to github packages
-        run: docker push ${DOCKER_URL}/${DOCKER_PATH}/${DOCKER_IMAGE}:${COSMIC_MOBILE_TAG}
+        run: docker push ${COSMIC_MOBILE_IMAGE}
