@@ -1,14 +1,9 @@
 # cosmic
 
-- accounts: online accounts, social media profiles, utilities, billing accounts
-- calendar: events from social media and accounts
-- contacts: offline contacts and contacts from social media accounts
+## cosmic-mobile
 
-spectrum: mobile phone is username
-
-- mobile
-- webapp
-- portal
+<!-- badges -->
+![build and deploy cosmic mobile app](https://github.com/derrysmith/cosmic/workflows/build%20and%20deploy%20cosmic%20mobile%20app/badge.svg)
 
 ## cosmic @ github
 
