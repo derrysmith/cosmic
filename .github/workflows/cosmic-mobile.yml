@@ -1,5 +1,5 @@
 # workflow name
-name: build and deploy cosmic mobile app
+name: cosmic-mobile
 
 # workflow events
 on:
@@ -13,8 +13,8 @@ env:
   DOCKER_URL: docker.pkg.github.com
   DOCKER_PATH: ${{ github.repository }}
   DOCKER_IMAGE: cosmic-mobile
-  COSMIC_MOBILE_TAG: ci
-  COSMIC_MOBILE_IMAGE: ${{ format('{0}/{1}/{2}:{3}', 'docker.pkg.github.com', github.repository, 'cosmic-mobile', 'ci') }}
+  COSMIC_MOBILE_IMAGE: ${{ format('{0}/{1}/{2}', 'docker.pkg.github.com', github.repository, 'cosmic-mobile') }}
+  COSMIC_MOBILE_VERSION: ci
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
 # workflow jobs
@@ -27,10 +27,14 @@ jobs:
         uses: actions/checkout@v2
 
       - name: build dockerfile
-        run: docker-compose build cosmic-mobile
+        run: |
+          docker build \
+          -t ${COSMIC_MOBILE_IMAGE}:${COSMIC_MOBILE_VERSION} \
+          -t ${COSMIC_MOBILE_IMAGE}:latest \
+          -f ./cosmic-mobile/Dockerfile ./cosmic-mobile
         
       - name: docker login
         run: echo ${GITHUB_TOKEN} | docker login ${DOCKER_URL} -u ${GITHUB_ACTOR} --password-stdin
 
       - name: docker push to github packages
-        run: docker push ${COSMIC_MOBILE_IMAGE}
+        run: docker push ${COSMIC_MOBILE_IMAGE}:${COSMIC_MOBILE_VERSION}

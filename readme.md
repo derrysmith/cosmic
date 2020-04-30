@@ -3,7 +3,7 @@
 ## cosmic-mobile
 
 <!-- badges -->
-![build and deploy cosmic mobile app](https://github.com/derrysmith/cosmic/workflows/build%20and%20deploy%20cosmic%20mobile%20app/badge.svg)
+![build and deploy cosmic mobile app](https://github.com/derrysmith/cosmic/workflows/cosmic-mobile/badge.svg)
 
 ## cosmic @ github
 
