@@ -14,7 +14,7 @@ env:
   DOCKER_PATH: ${{ github.repository }}
   DOCKER_IMAGE: cosmic-mobile
   COSMIC_MOBILE_IMAGE: ${{ format('{0}/{1}/{2}', 'docker.pkg.github.com', github.repository, 'cosmic-mobile') }}
-  COSMIC_MOBILE_VERSION: ci
+  COSMIC_MOBILE_VERSION: ${{ github.run_id }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
 # workflow jobs
