@@ -46,12 +46,12 @@ jobs:
       - name: docker login
         run: echo ${GITHUB_TOKEN} | docker login ${DOCKER_URL} -u ${GITHUB_ACTOR} --password-stdin
 
-      - name: docker push
+      - name: deploy (test)
         run: |
           docker push ${COSMIC_MOBILE_IMAGE}:${COSMIC_MOBILE_VERSION}-${COSMIC_MOBILE_BUILD}
         if: github.event.action != 'closed'
 
-      - name: docker push (production version)
+      - name: deploy (prod)
         run: |
           docker push ${COSMIC_MOBILE_IMAGE}:${COSMIC_MOBILE_VERSION}
           docker push ${COSMIC_MOBILE_IMAGE}:latest
