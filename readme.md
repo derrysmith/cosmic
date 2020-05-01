@@ -5,6 +5,23 @@
 <!-- badges -->
 ![build and deploy cosmic mobile app](https://github.com/derrysmith/cosmic/workflows/cosmic-mobile/badge.svg)
 
+### continuous integration/delivery
+
+- create feature branch
+	- `git checkout -b issues/123`
+- develop on feature branch, commit often
+	- `git add -A`
+	- `git commit -m "commit message"`
+	- `git rebase -i` to cleanup and squash local commits
+- push local commits to repository
+	- `git push -u origin issues/123`
+- open a pull request to merge feature branch into master branch
+- on pull request commits
+	- build Dockerfile
+		- `docker build ...`
+	- push docker image to packages repository
+	- 
+
 ## cosmic @ github
 
 on commit (feature branch):

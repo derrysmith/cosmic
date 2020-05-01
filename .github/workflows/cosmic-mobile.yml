@@ -3,10 +3,17 @@ name: cosmic-mobile
 
 # workflow events
 on:
-  push:
+  # only when merged into master
+  pull_request:
+    branches:
+      - master
     paths:
-    - "cosmic-mobile/**"
-    - ".github/workflows/cosmic-mobile.yml"
+      - "cosmic-mobile/**"
+      - ".github/workflows/cosmic-mobile.yml"
+    types:
+      - opened
+      - edited
+      - closed
 
 # workflow env vars
 env:
@@ -20,13 +27,13 @@ env:
 # workflow jobs
 jobs:
   compile:
-    name: build cosmic mobile app (android and ios)
+    name: build cosmic mobile app
     runs-on: ubuntu-latest
     steps:
       - name: checkout source code
         uses: actions/checkout@v2
 
-      - name: build dockerfile
+      - name: docker build
         run: |
           docker build \
           -t ${COSMIC_MOBILE_IMAGE}:${COSMIC_MOBILE_VERSION} \
@@ -36,5 +43,5 @@ jobs:
       - name: docker login
         run: echo ${GITHUB_TOKEN} | docker login ${DOCKER_URL} -u ${GITHUB_ACTOR} --password-stdin
 
-      - name: docker push to github packages
+      - name: docker push
         run: docker push ${COSMIC_MOBILE_IMAGE}:${COSMIC_MOBILE_VERSION}
