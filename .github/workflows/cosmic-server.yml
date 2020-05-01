@@ -35,26 +35,40 @@ jobs:
       - name: checkout source code
         uses: actions/checkout@v2
 
-      - name: docker build
+      - name: docker build (test)
         run: |
           docker build \
           -t ${COSMIC_SERVER_IMAGE}:${COSMIC_SERVER_VERSION}-${COSMIC_SERVER_BUILD} \
           -t ${COSMIC_SERVER_IMAGE}:${COSMIC_SERVER_VERSION} \
           -t ${COSMIC_SERVER_IMAGE}:latest \
+          --build-arg FIREBASE_TOKEN="${{ secrets.FIREBASE_TOKEN }}" \
+          --build-arg FIREBASE_TARGET=test \
           -f ./cosmic-server/Dockerfile ./cosmic-server
+        if: github.event.action != 'closed'
+
+      - name: docker build (prod)
+        run: |
+          docker build \
+          -t ${COSMIC_SERVER_IMAGE}:${COSMIC_SERVER_VERSION}-${COSMIC_SERVER_BUILD} \
+          -t ${COSMIC_SERVER_IMAGE}:${COSMIC_SERVER_VERSION} \
+          -t ${COSMIC_SERVER_IMAGE}:latest \
+          --build-arg FIREBASE_TOKEN="${{ secrets.FIREBASE_TOKEN }}" \
+          --build-arg FIREBASE_TARGET=prod \
+          -f ./cosmic-server/Dockerfile ./cosmic-server
+        if: github.event.action == 'closed' && github.event.pull_request.merged == true
         
       - name: docker login
         run: echo ${GITHUB_TOKEN} | docker login ${DOCKER_URL} -u ${GITHUB_ACTOR} --password-stdin
 
       - name: deploy (test)
         run: |
-          docker run --rm ${COSMIC_SERVER_IMAGE}:${COSMIC_SERVER_VERSION}-${COSMIC_SERVER_BUILD}
+          docker run --rm ${COSMIC_SERVER_IMAGE}:${COSMIC_SERVER_VERSION}-${COSMIC_SERVER_BUILD} --token "${{ secrets.FIREBASE_TOKEN }}"
           docker push ${COSMIC_SERVER_IMAGE}:${COSMIC_SERVER_VERSION}-${COSMIC_SERVER_BUILD}
         if: github.event.action != 'closed'
 
       - name: deploy (prod)
         run: |
-          docker run --rm ${COSMIC_SERVER_IMAGE}:${COSMIC_SERVER_VERSION}
+          docker run --rm ${COSMIC_SERVER_IMAGE}:${COSMIC_SERVER_VERSION} --token "${{ secrets.FIREBASE_TOKEN }}"
           docker push ${COSMIC_SERVER_IMAGE}:${COSMIC_SERVER_VERSION}
           docker push ${COSMIC_SERVER_IMAGE}:latest
         if: github.event.action == 'closed' && github.event.pull_request.merged == true

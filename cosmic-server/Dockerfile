@@ -6,7 +6,7 @@ COPY ./src/firebase/functions/package*.json ./src/firebase/functions/
 RUN mkdir -p ./src/firebase/functions/node_modules
 RUN npm install --prefix ./src/firebase/functions
 
-ARG FIREBASE_TOKEN="xyz"
+ARG FIREBASE_TOKEN
 ARG FIREBASE_TARGET="test"
 
 COPY . .
