@@ -9,6 +9,10 @@ on:
     paths:
       - "cosmic-mobile/**"
       - ".github/workflows/cosmic-mobile.yml"
+    types:
+      - closed
+      - edited
+      - opened
 
 # workflow env vars
 env:
