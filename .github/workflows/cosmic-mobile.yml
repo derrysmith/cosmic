@@ -3,12 +3,19 @@ name: cosmic-mobile
 
 # workflow events
 on:
+  # another commit
   pull_request:
     branches:
       - master
     paths:
       - "cosmic-mobile/**"
       - ".github/workflows/cosmic-mobile.yml"
+    types:
+      - closed
+      - edited
+      - opened
+      - reopened
+      - synchronize
 
 # workflow env vars
 env:
