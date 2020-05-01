@@ -3,6 +3,7 @@ name: cosmic-mobile
 
 # workflow events
 on:
+  # another commit
   pull_request:
     branches:
       - master
