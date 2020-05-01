@@ -1,0 +1,60 @@
+# workflow name
+name: cosmic-server
+
+# workflow events
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - "cosmic-server/**"
+      - ".github/workflows/cosmic-server.yml"
+    types:
+      - closed
+      - edited
+      - opened
+      - reopened
+      - synchronize
+
+# workflow env vars
+env:
+  DOCKER_URL: docker.pkg.github.com
+  DOCKER_PATH: ${{ github.repository }}
+  DOCKER_IMAGE: cosmic-server
+  COSMIC_SERVER_BUILD: ${{ github.run_id }}
+  COSMIC_SERVER_IMAGE: ${{ format('{0}/{1}/{2}', 'docker.pkg.github.com', github.repository, 'cosmic-server') }}
+  COSMIC_SERVER_VERSION: ${{ format('1.0.{0}', github.event.number) }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+# workflow jobs
+jobs:
+  compile:
+    name: build cosmic server image
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v2
+
+      - name: docker build
+        run: |
+          docker build \
+          -t ${COSMIC_SERVER_IMAGE}:${COSMIC_SERVER_VERSION}-${COSMIC_SERVER_BUILD} \
+          -t ${COSMIC_SERVER_IMAGE}:${COSMIC_SERVER_VERSION} \
+          -t ${COSMIC_SERVER_IMAGE}:latest \
+          -f ./cosmic-server/Dockerfile ./cosmic-server
+        
+      - name: docker login
+        run: echo ${GITHUB_TOKEN} | docker login ${DOCKER_URL} -u ${GITHUB_ACTOR} --password-stdin
+
+      - name: deploy (test)
+        run: |
+          docker run --rm ${COSMIC_SERVER_IMAGE}:${COSMIC_SERVER_VERSION}-${COSMIC_SERVER_BUILD}
+          docker push ${COSMIC_SERVER_IMAGE}:${COSMIC_SERVER_VERSION}-${COSMIC_SERVER_BUILD}
+        if: github.event.action != 'closed'
+
+      - name: deploy (prod)
+        run: |
+          docker run --rm ${COSMIC_SERVER_IMAGE}:${COSMIC_SERVER_VERSION}
+          docker push ${COSMIC_SERVER_IMAGE}:${COSMIC_SERVER_VERSION}
+          docker push ${COSMIC_SERVER_IMAGE}:latest
+        if: github.event.action == 'closed' && github.event.pull_request.merged == true

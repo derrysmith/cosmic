@@ -1,0 +1,8 @@
+# paths
+**/*/node_modules/**/*
+
+# files
+**/*/.dockerignore
+**/*/.runtimeconfig.json
+**/*/Dockerfile
+**/*/firestore-debug.log

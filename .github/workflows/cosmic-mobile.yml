@@ -53,6 +53,6 @@ jobs:
 
       - name: docker push (production version)
         run: |
-            docker push ${COSMIC_MOBILE_IMAGE}:${COSMIC_MOBILE_VERSION}
-            docker push ${COSMIC_MOBILE_IMAGE}:latest
+          docker push ${COSMIC_MOBILE_IMAGE}:${COSMIC_MOBILE_VERSION}
+          docker push ${COSMIC_MOBILE_IMAGE}:latest
         if: github.event.action == 'closed' && github.event.pull_request.merged == true

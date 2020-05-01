@@ -21,6 +21,16 @@
 	+-- cosmic-portal
 		|-- Dockerfile
 	+-- cosmic-server
+		+-- src
+			+-- firebase
+				+-- firestore
+				+-- functions
+					|-- package.json
+				+-- pubsub
+				+-- storage
+				|-- .firebaserc
+				|-- firebase.json
+			+-- packages
 		|-- Dockerfile
 	+-- cosmic-webapp
 		|-- Dockerfile
