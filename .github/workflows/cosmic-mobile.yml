@@ -34,7 +34,6 @@ jobs:
     steps:
       - name: checkout source code
         uses: actions/checkout@v2
-        if: github.event.action != 'closed'
 
       - name: docker build
         run: |
@@ -43,11 +42,9 @@ jobs:
           -t ${COSMIC_MOBILE_IMAGE}:${COSMIC_MOBILE_VERSION} \
           -t ${COSMIC_MOBILE_IMAGE}:latest \
           -f ./cosmic-mobile/Dockerfile ./cosmic-mobile
-        if: github.event.action != 'closed'
         
       - name: docker login
         run: echo ${GITHUB_TOKEN} | docker login ${DOCKER_URL} -u ${GITHUB_ACTOR} --password-stdin
-        if: github.event.action != 'closed'
 
       - name: docker push
         run: |
