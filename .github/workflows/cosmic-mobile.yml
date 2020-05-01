@@ -3,25 +3,21 @@ name: cosmic-mobile
 
 # workflow events
 on:
-  # only when merged into master
   pull_request:
     branches:
       - master
     paths:
       - "cosmic-mobile/**"
       - ".github/workflows/cosmic-mobile.yml"
-    types:
-      - opened
-      - edited
-      - closed
 
 # workflow env vars
 env:
   DOCKER_URL: docker.pkg.github.com
   DOCKER_PATH: ${{ github.repository }}
   DOCKER_IMAGE: cosmic-mobile
+  COSMIC_MOBILE_BUILD: ${{ github.run_id }}
   COSMIC_MOBILE_IMAGE: ${{ format('{0}/{1}/{2}', 'docker.pkg.github.com', github.repository, 'cosmic-mobile') }}
-  COSMIC_MOBILE_VERSION: ${{ github.run_id }}
+  COSMIC_MOBILE_VERSION: ${{ format('1.0.{0}', github.event.number) }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
 # workflow jobs
@@ -36,6 +32,7 @@ jobs:
       - name: docker build
         run: |
           docker build \
+          -t ${COSMIC_MOBILE_IMAGE}:${COSMIC_MOBILE_VERSION}-${COSMIC_MOBILE_BUILD} \
           -t ${COSMIC_MOBILE_IMAGE}:${COSMIC_MOBILE_VERSION} \
           -t ${COSMIC_MOBILE_IMAGE}:latest \
           -f ./cosmic-mobile/Dockerfile ./cosmic-mobile
@@ -44,4 +41,12 @@ jobs:
         run: echo ${GITHUB_TOKEN} | docker login ${DOCKER_URL} -u ${GITHUB_ACTOR} --password-stdin
 
       - name: docker push
-        run: docker push ${COSMIC_MOBILE_IMAGE}:${COSMIC_MOBILE_VERSION}
+        run: |
+          docker push ${COSMIC_MOBILE_IMAGE}:${COSMIC_MOBILE_VERSION}-${COSMIC_MOBILE_BUILD}
+        if: github.event.action != 'closed'
+
+      - name: docker push (production version)
+        run: |
+            docker push ${COSMIC_MOBILE_IMAGE}:${COSMIC_MOBILE_VERSION}
+            docker push ${COSMIC_MOBILE_IMAGE}:latest
+        if: github.event.action == 'closed' && github.event.pull_request.merged == true

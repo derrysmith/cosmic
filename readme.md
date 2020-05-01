@@ -20,7 +20,9 @@
 	- build Dockerfile
 		- `docker build ...`
 	- push docker image to packages repository
-	- 
+
+on builds, version = 1.0.[pr#]-[run_id]
+on merges, version = 1.0.[pr#]
 
 ## cosmic @ github
 
