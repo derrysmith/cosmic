@@ -1,54 +1,39 @@
 # cosmic
 
-## cosmic applications
-
-### cosmic-mobile
-
-<!-- badges -->
-![build and deploy cosmic mobile app](https://github.com/derrysmith/cosmic/workflows/cosmic-mobile/badge.svg)
-
-## cosmic source code
-```
-+-- https://github.com/derrysmith/cosmic
-	+-- .github
-		+-- workflows
-			|-- cosmic-mobile.yml
-			|-- cosmic-portal.yml
-			|-- cosmic-server.yml
-			|-- cosmic-webapp.yml
-	+-- cosmic-mobile
-		|-- Dockerfile
-	+-- cosmic-portal
-		|-- Dockerfile
-	+-- cosmic-server
-		+-- src
-			+-- firebase
-				+-- firestore
-				+-- functions
-					|-- package.json
-				+-- pubsub
-				+-- storage
-				|-- .firebaserc
-				|-- firebase.json
-			+-- packages
-		|-- Dockerfile
-	+-- cosmic-webapp
-		|-- Dockerfile
-	|-- .gitattributes
-	|-- .gitignore
-	|-- readme.md
-```
-
 ## cosmic packages
 
+## cosmic products
+
+### cosmic-app
+> Cosmic Client Desktop Application
+
+### cosmic-sdk-api
+> Cosmic API Client Library (Rest API)
+
+### cosmic-sdk-cli
+> Cosmic API Client Library (Command-Line Utility)
+
+### cosmic-sdk-net
+> Cosmic API Client Library (.NET Core)
+
+### cosmic-sdk-npm
+> Cosmic API Client Library (Node.js)
+
+### cosmic-web
+> Cosmic Client Browser Application
+
+### mobile-app
+> Cosmic Mobile Application
+
+### mobile-sdk-android
+> Android Mobile SDK
+
+### mobile-sdk-ios
+> iOS Mobile SDK
+
+## cosmic services
+
 ```
-+-- https://github.com/derrysmith/cosmic/packages
-	+-- cosmic-mobile
-		|-- latest
-		|-- 1.0.{pr-number}
-		|-- 1.0.{pr-number}-{build-number}
-	+-- cosmic-portal
-		|-- latest
-	+-- cosmic-webapp
-		|-- latest
+/-- derrysmith/cosmic
+	
 ```
