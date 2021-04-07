@@ -35,5 +35,17 @@
 
 ```
 /-- derrysmith/cosmic
-	
+	/-- cosmic-products
+		/-- client-app
+			/-- src
+			/-- test
+			|-- client-app.dockerfile
+			|-- client-app.sln
+		/-- client-doc
+			/-- docs
+			|-- mkdocs.yml
+		/-- client-sdk-api
+			/-- src
+		/-- client-sdk-cli
+		/-- client-sdk-net
 ```
